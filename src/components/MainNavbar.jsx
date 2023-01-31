@@ -10,7 +10,7 @@ import {
   MDBCollapse,
 } from "mdb-react-ui-kit";
 
-const MainNavbar = () => {
+export default function App() {
   const [showNav, setShowNav] = useState(false);
 
   return (
@@ -53,6 +53,4 @@ const MainNavbar = () => {
       </MDBContainer>
     </MDBNavbar>
   );
-};
-
-export default MainNavbar;
+}
