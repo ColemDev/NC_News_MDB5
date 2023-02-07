@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import AllArticles from "./components/AllArticles";
+import AllArticles from "./pages/AllArticles";
 
 const App = () => {
   return (
@@ -10,6 +10,6 @@ const App = () => {
       </Routes>
     </Router>
   );
-};
+}
 
 export default App;

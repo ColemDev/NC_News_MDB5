@@ -16,6 +16,7 @@ import {
   MDBCollapse,
   MDBCard,
   MDBCardImage,
+  MDBCardHeader,
   MDBCardBody,
   MDBCardTitle,
   MDBCardText,
@@ -28,6 +29,7 @@ const AllArticles = () => {
   const [showBasic, setShowBasic] = useState(false);
 
   return (
+    <MDBContainer>
     <MDBNavbar expand='lg' light bgColor='light'>
       <MDBContainer fluid>
         <MDBNavbarBrand href='#'>Brand</MDBNavbarBrand>
@@ -78,30 +80,62 @@ const AllArticles = () => {
         </MDBCollapse>
       </MDBContainer>
     </MDBNavbar>
-    );
-};
 <MDBContainer>
    <MDBRow className='row-cols-1 row-cols-md-3 g-4'>
-          <MDBCol>
+   {/* Article Column of Reddit Clone  */}
+          <MDBCol> 
             <MDBCard className='h-100'>
+        <MDBRow className='row-cols-1 row-cols-md-3 g-4'>
+            {/* left column is voting button component */}
+            <MDBCol>
+                {/* upvote arrow button */}
+                <MDBBtn color='primary'>
+                    <MDBIcon icon='arrow-up' fas />
+                </MDBBtn>
+                {/* vote counter here */}
+                <p>24k.0k</p>
+                {/* downvote arrow button */}
+                <MDBBtn color='primary'>
+                    <MDBIcon icon='arrow-down' fas />
+                </MDBBtn>
+            </MDBCol>
+            {/* right column is article component */}
+            <MDBCol>
               <MDBCardImage
                 src='https://mdbootstrap.com/img/new/standard/city/044.webp'
                 alt='...'
                 position='top'
               />
               <MDBCardBody>
-                <MDBCardTitle>Card title</MDBCardTitle>
+                <MDBCardHeader>
+                    <MDBRow className='row-cols-1 row-cols-md-3 g-4'>
+                        <MDBCol>
+                            <MDBBtn color='primary'>nc/topicnamehere</MDBBtn>
+                        </MDBCol>
+                        <MDBCol>
+                            <p className='text-muted'>posted by {<MDBBtn color='primary'>u/username</MDBBtn>} 3 mins ago</p>
+                        </MDBCol>
+                        </MDBRow>
+                </MDBCardHeader>
+                <MDBCardTitle>Article Slug</MDBCardTitle>
                 <MDBCardText>
                   This is a longer card with supporting text below as a natural lead-in to additional content.
                   This content is a little bit longer.
                 </MDBCardText>
               </MDBCardBody>
               <MDBCardFooter>
-                <small className='text-muted'>Last updated 3 mins ago</small>
+                <MDBButton>
+                    <MDBIcon icon='comment-alt' fas />
+                     477 comments
+                </MDBButton>
+
               </MDBCardFooter>
+            </MDBCol>
+        </MDBRow>
             </MDBCard>
           </MDBCol>
           <MDBCol>
+            {/* Page Description of Reddit Clone  */}
             <MDBCard className='h-100'>
               <MDBCardImage
                 src='https://mdbootstrap.com/img/new/standard/city/043.webp'
@@ -109,36 +143,20 @@ const AllArticles = () => {
                 position='top'
               />
               <MDBCardBody>
-                <MDBCardTitle>Card title</MDBCardTitle>
+                <MDBCardTitle>nc/all</MDBCardTitle>
                 <MDBCardText>
-                  This card has supporting text below as a natural lead-in to additional content.
+                 The most active posts from all of Northcoders News.
+                 Com here to see new posts rising and be part of the conversation.
                 </MDBCardText>
               </MDBCardBody>
               <MDBCardFooter>
-                <small className='text-muted'>Last updated 3 mins ago</small>
-              </MDBCardFooter>
-            </MDBCard>
-          </MDBCol>
-          <MDBCol>
-            <MDBCard className='h-100'>
-              <MDBCardImage
-                src='https://mdbootstrap.com/img/new/standard/city/042.webp'
-                alt='...'
-                position='top'
-              />
-              <MDBCardBody>
-                <MDBCardTitle>Card title</MDBCardTitle>
-                <MDBCardText>
-                  This is a wider card with supporting text below as a natural lead-in to additional content. This
-                  card has even longer content than the first to show that equal height action.
-                </MDBCardText>
-              </MDBCardBody>
-              <MDBCardFooter>
-                <small className='text-muted'>Last updated 3 mins ago</small>
+                        <MDBBtn color='primary'>Create Post</MDBBtn>
               </MDBCardFooter>
             </MDBCard>
           </MDBCol>
         </MDBRow>
 </MDBContainer>
-
+    </MDBContainer>
+    );
+};
 export default AllArticles;
