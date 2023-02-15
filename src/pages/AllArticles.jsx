@@ -211,7 +211,7 @@ const AllArticles = () => {
                 <MDBBtn color='primary'>
                     <MDBIcon icon='arrow-down' fas />
                 </MDBBtn>
-            </MDBCol> 
+            </MDBCol>
             {/* right column of card is article component and should be the equivalent of 640px wide */}
             <MDBCol className='col-md-11'>
 
