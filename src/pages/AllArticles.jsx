@@ -206,7 +206,7 @@ const AllArticles = () => {
                     <MDBIcon icon='arrow-up' fas />
                 </MDBBtn>
                 {/* vote counter here */}
-                <p>24k.0k</p>
+                <p className='text-muted justify-content-center'>24k</p>
                 {/* downvote arrow button */}
                 <MDBBtn color='primary'>
                     <MDBIcon icon='arrow-down' fas />
