@@ -30,10 +30,13 @@ const AllArticles = () => {
 
   return (
     <MDBContainer>
-    <MDBNavbar expand='lg' light bgColor='light'>
-      <MDBContainer fluid>
-        <MDBNavbarBrand href='#'>Brand</MDBNavbarBrand>
-
+      {/* navbar  */}
+      <MDBNavbar expand='lg' light bgColor='light' sticky='top'>
+        <MDBContainer>
+          <MDBNavbarBrand href='#'>
+            <MDBIcon icon='Logo' fas />
+            Northcoders News
+          </MDBNavbarBrand>
         <MDBNavbarToggler
           aria-controls='navbarSupportedContent'
           aria-expanded='false'
@@ -44,51 +47,61 @@ const AllArticles = () => {
         </MDBNavbarToggler>
 
         <MDBCollapse navbar show={showBasic}>
-          <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
+          <MDBNavbarNav className='mr-auto mb-1 mb-sm-0'>
             <MDBNavbarItem>
               <MDBNavbarLink active aria-current='page' href='#'>
                 Home
               </MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href='#'>Link</MDBNavbarLink>
-            </MDBNavbarItem>
-
-            <MDBNavbarItem>
               <MDBDropdown>
                 <MDBDropdownToggle tag='a' className='nav-link' role='button'>
-                  Dropdown
+                  Topics
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
-                  <MDBDropdownItem link>Action</MDBDropdownItem>
-                  <MDBDropdownItem link>Another action</MDBDropdownItem>
-                  <MDBDropdownItem link>Something else here</MDBDropdownItem>
-                </MDBDropdownMenu>
+                  <MDBDropdownItem link>Football</MDBDropdownItem>
+                  <MDBDropdownItem link>Coding</MDBDropdownItem>
+                  <MDBDropdownItem link>Cooking</MDBDropdownItem>
+
+          
+                  
+                  {/* {getTopics().array.forEach(element => {
+                    return <MDBDropdownItem link>{getArticlesByTopic(element)}</MDBDropdownItem>
+  */}  </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavbarItem>
-
-            <MDBNavbarItem>
-              <MDBNavbarLink disabled href='#' tabIndex={-1} aria-disabled='true'>
-                Disabled
-              </MDBNavbarLink>
-            </MDBNavbarItem>
-          </MDBNavbarNav>
-          <form className='d-flex input-group w-auto'>
-            <input type='search' className='form-control' placeholder='Type query' aria-label='Search' />
+            </MDBNavbarNav>
+          {/* <form className='d-flex input-group w-auto'>
+            <input type='search' className='form-control' placeholder='Search NC News' aria-label='Search' />
             <MDBBtn color='primary'>Search</MDBBtn>
-          </form>
+          </form> */}
+          <MDBNavbarNav className='mb-2 mb-sm-0 justify-content-end'>
+          {/* profile dropdown */}
+          <MDBNavbarItem>
+          <MDBDropdown>
+            <MDBDropdownToggle tag='a' className='nav-link' role='button'>
+              <MDBIcon icon='user' fas />Hardcore-Muppetry2023
+
+            </MDBDropdownToggle>
+            <MDBDropdownMenu>
+              <MDBDropdownItem link>Profile</MDBDropdownItem>
+              </MDBDropdownMenu>
+          </MDBDropdown>
+        </MDBNavbarItem>
+          </MDBNavbarNav>
         </MDBCollapse>
       </MDBContainer>
     </MDBNavbar>
+{/* end of navbar  */}
 <MDBContainer>
-   <MDBRow className='row-cols-1 row-cols-md-3 g-4'>
-   {/* Article Column of Reddit Clone  */}
-          <MDBCol> 
-            <MDBCard className='h-100'>
-        <MDBRow className='row-cols-1 row-cols-md-3 g-4'>
-            {/* left column is voting button component */}
-            <MDBCol>
-                {/* upvote arrow button */}
+   <MDBRow className='row-cols-2 row-cols-md-3 justify-content-center'>
+   {/* Article Column of Reddit Clone*/}
+          <MDBCol className='col-md-6'>
+          <MDBCard shadow='0' border='primary' background='white' className='mb-3'>
+        <MDBRow className='row-cols-2 row-cols-md-2'>
+            {/* left column of card is voting button component  */}
+            <MDBCol className='col-md-1'>
+                {/* upvote arrow button  */}
                 <MDBBtn color='primary'>
                     <MDBIcon icon='arrow-up' fas />
                 </MDBBtn>
@@ -98,45 +111,147 @@ const AllArticles = () => {
                 <MDBBtn color='primary'>
                     <MDBIcon icon='arrow-down' fas />
                 </MDBBtn>
-            </MDBCol>
-            {/* right column is article component */}
-            <MDBCol>
-              <MDBCardImage
-                src='https://mdbootstrap.com/img/new/standard/city/044.webp'
-                alt='...'
-                position='top'
-              />
-              <MDBCardBody>
-                <MDBCardHeader>
-                    <MDBRow className='row-cols-1 row-cols-md-3 g-4'>
+            </MDBCol> 
+            {/* right column of card is article component and should be the equivalent of 640px wide */}
+            <MDBCol className='col-md-11'>
+
+             <MDBCardHeader>
+                    <MDBRow className='row-cols-3 row-cols-md-3'>
                         <MDBCol>
-                            <MDBBtn color='primary'>nc/topicnamehere</MDBBtn>
+                            <p className='text-muted'>nc/topic</p>
                         </MDBCol>
                         <MDBCol>
-                            <p className='text-muted'>posted by {<MDBBtn color='primary'>u/username</MDBBtn>} 3 mins ago</p>
+                            <p className='text-muted'>Posted by: nc/user</p>
+                        </MDBCol>
+                        <MDBCol>
+                            <p className='text-muted'>Posted on: nc/date</p>
                         </MDBCol>
                         </MDBRow>
                 </MDBCardHeader>
-                <MDBCardTitle>Article Slug</MDBCardTitle>
-                <MDBCardText>
+                <MDBCardBody>
+                  <MDBCardTitle>Article Slug</MDBCardTitle>
+                  <MDBCardText>
                   This is a longer card with supporting text below as a natural lead-in to additional content.
                   This content is a little bit longer.
-                </MDBCardText>
-              </MDBCardBody>
-              <MDBCardFooter>
-                <MDBButton>
-                    <MDBIcon icon='comment-alt' fas />
-                     477 comments
-                </MDBButton>
-
-              </MDBCardFooter>
+                  </MDBCardText>
+             
+                  </MDBCardBody>
+                  <MDBCardImage
+                  src='https://mdbootstrap.com/img/new/standard/city/044.webp'
+                  alt='...'
+                  position='top'
+                  />
+                  <MDBCardFooter>
+                    <MDBBtn color='primary'><MDBIcon icon='comment' fas /> 422 Comments</MDBBtn>
+                  </MDBCardFooter>
             </MDBCol>
-        </MDBRow>
+        </MDBRow> 
+            </MDBCard>
+            <MDBCard shadow='0' border='primary' background='white' className='mb-3'>
+        <MDBRow className='row-cols-2 row-cols-md-2'>
+            {/* left column of card is voting button component  */}
+            <MDBCol className='col-md-1'>
+                {/* upvote arrow button  */}
+                <MDBBtn color='primary'>
+                    <MDBIcon icon='arrow-up' fas />
+                </MDBBtn>
+               {/* vote counter here */}
+                <p className='text-muted justify-content-center'>24k</p>
+                {/* downvote arrow button */}
+                <MDBBtn color='primary'>
+                    <MDBIcon icon='arrow-down' fas />
+                </MDBBtn>
+            </MDBCol> 
+            {/* right column of card is article component and should be the equivalent of 640px wide */}
+            <MDBCol className='col-md-11'>
+
+             <MDBCardHeader>
+                    <MDBRow className='row-cols-3 row-cols-md-3'>
+                        <MDBCol>
+                            <p className='text-muted'>nc/topic</p>
+                        </MDBCol>
+                        <MDBCol>
+                            <p className='text-muted'>Posted by: nc/user</p>
+                        </MDBCol>
+                        <MDBCol>
+                            <p className='text-muted'>Posted on: nc/date</p>
+                        </MDBCol>
+                        </MDBRow>
+                </MDBCardHeader>
+                <MDBCardBody>
+                  <MDBCardTitle>Article Slug</MDBCardTitle>
+                  <MDBCardText>
+                  This is a longer card with supporting text below as a natural lead-in to additional content.
+                  This content is a little bit longer.
+                  </MDBCardText>
+             
+                  </MDBCardBody>
+                  <MDBCardImage
+                  src='https://mdbootstrap.com/img/new/standard/city/044.webp'
+                  alt='...'
+                  position='top'
+                  />
+                  <MDBCardFooter>
+                    <MDBBtn color='primary'><MDBIcon icon='comment' fas /> 422 Comments</MDBBtn>
+                  </MDBCardFooter>
+            </MDBCol>
+        </MDBRow> 
+            </MDBCard>
+            <MDBCard shadow='0' border='primary' background='white' className='mb-3'>
+        <MDBRow className='row-cols-2 row-cols-md-2'>
+            {/* left column of card is voting button component  */}
+            <MDBCol className='col-md-1'>
+                {/* upvote arrow button  */}
+                <MDBBtn color='primary'>
+                    <MDBIcon icon='arrow-up' fas />
+                </MDBBtn>
+                {/* vote counter here */}
+                <p>24k.0k</p>
+                {/* downvote arrow button */}
+                <MDBBtn color='primary'>
+                    <MDBIcon icon='arrow-down' fas />
+                </MDBBtn>
+            </MDBCol> 
+            {/* right column of card is article component and should be the equivalent of 640px wide */}
+            <MDBCol className='col-md-11'>
+
+             <MDBCardHeader>
+                    <MDBRow className='row-cols-3 row-cols-md-3'>
+                        <MDBCol>
+                            <p className='text-muted'>nc/topic</p>
+                        </MDBCol>
+                        <MDBCol>
+                            <p className='text-muted'>Posted by: nc/user</p>
+                        </MDBCol>
+                        <MDBCol>
+                            <p className='text-muted'>Posted on: nc/date</p>
+                        </MDBCol>
+                        </MDBRow>
+                </MDBCardHeader>
+                <MDBCardBody>
+                  <MDBCardTitle>Article Slug</MDBCardTitle>
+                  <MDBCardText>
+                  This is a longer card with supporting text below as a natural lead-in to additional content.
+                  This content is a little bit longer.
+                  </MDBCardText>
+             
+                  </MDBCardBody>
+                  <MDBCardImage
+                  src='https://mdbootstrap.com/img/new/standard/city/044.webp'
+                  alt='...'
+                  position='top'
+                  />
+                  <MDBCardFooter>
+                    <MDBBtn color='primary'><MDBIcon icon='comment' fas /> 422 Comments</MDBBtn>
+                  </MDBCardFooter>
+            </MDBCol>
+        </MDBRow> 
             </MDBCard>
           </MDBCol>
-          <MDBCol>
-            {/* Page Description of Reddit Clone  */}
-            <MDBCard className='h-100'>
+          {/* Page Description of Reddit Clone, should be equivalent of 312px wide*/}
+          <MDBCol className='col-md-3'>
+            
+            <MDBCard className='h-auto'>
               <MDBCardImage
                 src='https://mdbootstrap.com/img/new/standard/city/043.webp'
                 alt='...'
@@ -153,10 +268,10 @@ const AllArticles = () => {
                         <MDBBtn color='primary'>Create Post</MDBBtn>
               </MDBCardFooter>
             </MDBCard>
-          </MDBCol>
+          </MDBCol> 
         </MDBRow>
-</MDBContainer>
+        </MDBContainer>
     </MDBContainer>
-    );
+  );
 };
 export default AllArticles;
