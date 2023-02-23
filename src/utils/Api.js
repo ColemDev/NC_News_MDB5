@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://colemdev-nc-news-site.herokuapp.com/api";
+const baseURL = "https://nc-news-database.onrender.com/api";
 
 export const fetchArticles = async () => {
   const { data } = await axios.get(`${baseURL}/articles`);
