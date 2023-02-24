@@ -2,7 +2,7 @@ import React from 'react';
 import { MDBContainer, MDBBtn, MDBIcon
  } from 'mdb-react-ui-kit';
 
-const ArticleVotingButton = () => {
+const ArticleVotingButton = (votes) => {
     return (
         <MDBContainer className='d-flex flex-column justify-content-center align-items-center'>
             {/* upvote arrow button  */}
@@ -10,7 +10,7 @@ const ArticleVotingButton = () => {
                 <MDBIcon icon='arrow-up' fas />
                 </MDBBtn>
                 {/* vote counter here */}
-                <h6 className='text-center'>24k</h6>
+                <h6 className='text-center'>{votes}</h6>
                 {/* downvote arrow button */}
                 <MDBBtn color='primary'>
                     <MDBIcon icon='arrow-down' fas />

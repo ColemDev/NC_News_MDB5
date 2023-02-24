@@ -3,46 +3,43 @@ import { MDBCard, MDBRow, MDBCol, MDBCardHeader, MDBCardBody, MDBCardTitle, MDBC
 import ArticleVotingButton from './ArticleVotingButton';
 import { Link } from 'react-router-dom'
 
-
-const ArticleListCard = () => {
+// the arguments are id, title, author, topic, date, votes, comment-count, body, articleImage
+const ArticleListCard = ({ id, title, author, topic, date, votes, commentCount, articleImage }) => {
 return (
     <MDBCard shadow='0' border='primary' background='white' className='mb-3'>
     <MDBRow className='row-cols-2 row-cols-md-2 justify-content-center'>
         {/* left column of card is voting button component  */}
         <MDBCol className='col-md-1'>
-            <ArticleVotingButton />
+            <ArticleVotingButton votes={votes} />
         </MDBCol> 
         {/* right column of card is article component*/}
         <MDBCol className='col-md-11'>
             <MDBCardHeader>
                 <MDBRow className='row-cols-2 row-cols-md-2'>
                     <MDBCol className='col-md-4'>
-                        <p className='text-muted'>nc/topic</p>
+                        <p className='text-muted'>nc/`${topic}`</p>
                     </MDBCol>
                     <MDBCol className='col-md-4'>
-                        <p className='text-muted'>Posted by: nc/user</p>
+                        <p className='text-muted'>Posted by: nc/`${author}`</p>
                     </MDBCol>
                     <MDBCol className='col-md-4'>
-                        <p className='text-muted'>Posted on: nc/date</p>
+                        <p className='text-muted'>Posted on: nc/`${date}`</p>
                     </MDBCol>
                     </MDBRow>
                     </MDBCardHeader>
                     <MDBCardBody>
-                        <MDBCardTitle>Article Slug</MDBCardTitle>
-                        <MDBCardText>
-                            This is a longer card with supporting text below as a natural lead-in to additional content.
-                            This content is a little bit longer.
-                            </MDBCardText>
+                        <MDBCardTitle>`${title}`</MDBCardTitle>
                             </MDBCardBody>
                             <MDBCardImage
-                            src='https://mdbootstrap.com/img/new/standard/city/044.webp'
+                            src={articleImage}
                             alt='...'
                             position='top'
                             />
                             <MDBCardFooter>
                                 <MDBBtn color='primary' size='sm'>
                                 <MDBIcon far icon="comment-alt" />
-                       <Link to='/article/test'> 422 Comments</Link>
+                                {/* <Link to={`/article/${id}`}> 422 Comments</Link> */}
+                       <Link to='/article/test'>`${commentCount}` Comments</Link>
                                 </MDBBtn>
                                     </MDBCardFooter>
                                     </MDBCol>
