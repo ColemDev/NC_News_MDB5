@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 // import { fetchArticles, fetchArticlesByTopic } from '../utils/api';
-import {fetchArticles} from '../utils/api';
+import {fetchArticles} from '../utils/Api';
 import { articleListFunc } from '../utils/Functions';
 
 // const ArticleList = (topic) => {

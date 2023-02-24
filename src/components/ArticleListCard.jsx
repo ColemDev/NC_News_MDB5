@@ -38,8 +38,8 @@ return (
                             <MDBCardFooter>
                                 <MDBBtn color='primary' size='sm'>
                                 <MDBIcon far icon="comment-alt" />
-                                {/* <Link to={`/article/${id}`}> 422 Comments</Link> */}
-                       <Link to='/article/test'>`${commentCount}` Comments</Link>
+                                <Link to={`/article/${id}`}>
+                                `${commentCount}` Comments</Link>
                                 </MDBBtn>
                                     </MDBCardFooter>
                                     </MDBCol>

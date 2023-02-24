@@ -10,7 +10,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<AllArticles />} />
-        <Route path="/article/test" element={<SingleArticlePage />} />
+        <Route path="/article/:article_id" element={<SingleArticlePage />} />
       </Routes>
       </Router>
   );

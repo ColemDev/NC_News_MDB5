@@ -1,6 +1,6 @@
 import { fetchArticleById } from "../utils/Api";
 import { MDBCard, MDBCardHeader, MDBCardBody, MDBCardTitle, MDBCardImage, MDBCardFooter, MDBBtn, MDBIcon, MDBRow, MDBCol } from 'mdb-react-ui-kit';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import ArticleVotingButton from './ArticleVotingButton';
 import { useState } from 'react';
 
