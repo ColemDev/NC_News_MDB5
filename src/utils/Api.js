@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://nc-news-database.onrender.com/api";
+const baseURL = "http://localhost:9090/api";
 
 export const fetchArticles = async () => {
   const { data } = await axios.get(`${baseURL}/articles`);
