@@ -19,7 +19,7 @@ export const fetchTopics = async () => {
 };
 
 //backend endpoint is GET /api/articles?topic=:topic
-//fetchArticlesByTopic will be used to get all articles for a specific topic. Because it uses the same endpoint as fetchArticles, you can pass in a sort_by, order and topic to filter the articles. If you don't pass in any of these, it will return all articles in the default order. Due to fetchArticles already having this functionality built in, fetchArticlesByTopic will be depreciated in the future. An example of fetching all articles for the coding topic would be fetchArticlesByTopic('coding'). It will return an array of articles.
+//fetchArticlesByTopic will be used to get all articles for a specific topic. An example of fetching all articles for the coding topic would be fetchArticlesByTopic('coding'). It will return an array of articles.
 export const fetchArticlesByTopic = async (topic) => {
   console.log(topic, "param result from the api");
   const { data } = await axios.get(`${baseURL}/articles?topic=${topic}`);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBCard, MDBRow, MDBCol, MDBCardHeader, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage, MDBCardFooter, MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
+import { MDBCard, MDBRow, MDBCol, MDBCardHeader, MDBCardBody, MDBCardTitle, MDBCardImage, MDBCardFooter, MDBBtn, MDBIcon, MDBCardLink } from 'mdb-react-ui-kit';
 import ArticleVotingButton from './ArticleVotingButton';
 import { Link } from 'react-router-dom';
 import { dateFormatter } from '../utils/DateFormatter';
@@ -8,7 +8,7 @@ import { dateFormatter } from '../utils/DateFormatter';
 
 
 const ArticleListCard = ({ article }) => {
- 
+
     return (      
         <MDBCard shadow='0' border='primary' background='white' className='mb-3'>
         <MDBRow className='row-cols-2 row-cols-md-2 justify-content-center'>
@@ -19,9 +19,12 @@ const ArticleListCard = ({ article }) => {
     {/* right column of card is article component*/}
     <MDBCol className='col-md-11'>
         <MDBCardHeader>
-            <MDBRow className='row-cols-2 row-cols-md-2'>
+            <MDBRow className='row-cols-3 row-cols-md-3'>
                 <MDBCol className='col-md-4'>
-                    <p className='text-muted'>nc/{article.topic}</p>
+                    {/* link to list of topics  */}
+                   <MDBCardLink href={`/topics/${article.topic}`}>
+                        <p className='text-muted'>{`nc/${article.topic}`}</p>
+                    </MDBCardLink>
                 </MDBCol>
                 <MDBCol className='col-md-4'>
                     <p className='text-muted'>Posted by: u/{article.author}</p>
@@ -33,18 +36,18 @@ const ArticleListCard = ({ article }) => {
                 </MDBRow>
                 </MDBCardHeader>
                 <MDBCardBody>
-                    <MDBCardTitle>{article.title}</MDBCardTitle>
-                        </MDBCardBody>
+                    <MDBCardTitle>
+                       <MDBCardLink href={`/article/${article.article_id}`} className='text-dark'>
+                        {article.title}
+                        </MDBCardLink>
+                    </MDBCardTitle>
+                  
                         <MDBCardImage
                         src={article.article_img_url}
                         alt='...'
                         position='top'
                         />
-                        <MDBCardBody>
-                            <MDBCardText>
-                                {article.body}
-                            </MDBCardText>
-                            </MDBCardBody>
+                          </MDBCardBody>
                         <MDBCardFooter>
                             <MDBBtn color='white' className='px-3'>
                                     <Link to={`/article/${article.article_id}`}>
