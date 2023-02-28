@@ -1,48 +1,53 @@
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol
-} from 'mdb-react-ui-kit';
-// import CommentSection from '../components/CommentSection';
-// import TopicExplainer from '../components/TopicExplainer';
+
+import React, { useState} from 'react';
 import { useParams } from 'react-router-dom';
-import SinglePageCard from '../components/SinglePageCard';
 import { fetchArticleById } from '../utils/Api';
+import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import SinglePageCard from '../components/SinglePageCard';
 
-/*
-passed from articlelistcard with   <MDBCardLink href={`/article/${article.article_id}`} className='text-dark'>{article.title}</MDBCardLink>        
+import CommentSection from '../components/CommentSection';
+// import TopicExplainer from '../components/TopicExplainer';
 
-to app.jsx which passes the id via
-<Route path="/article/:article_id" element={<SingleArticlePage />} />*/
 
 const SingleArticlePage = () => {
+
+  // lets think in steps, what needs to happen here?
+  // 1. we need to get the article id from the url
+  // 2. we need to fetch the article from the api
+  // 3. we need to display the article on the page
+
   const { article_id } = useParams();
+  const [article, setArticle] = useState({});
+  fetchArticleById(article_id)
+    .then((article) => {
+      setArticle(article);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+/*article_id
+title
+topic
+author
+body
+created_at
+votes
+article_img_url
+comment_count*/
 
-  return (
-    <MDBContainer>
-      {article_id}
-    </MDBContainer>
-  );
+    return ( 
+        <MDBContainer>
+            <MDBRow>
+                <MDBCol md='8'>
+                    <SinglePageCard article={article}/>
+                    <CommentSection />
+                </MDBCol>
+                <MDBCol md='4' className='mx-auto'>
+                    {/* <TopicExplainer topic={article.topic} /> */}
+                </MDBCol>
+            </MDBRow>
+        </MDBContainer>
+    );
 };
-
-//     <MDBContainer>
-//       <MDBRow>
-//         {/* Article Column Left*/}
-//         <MDBCol md='8'>
-//           {/* <SinglePageCard article={article} /> */}
-//           {/* lets just return the object for now */}
-//           {article}
-
-//           {/* Comment Section */}
-//           {/* <CommentSection /> */}
-//         </MDBCol>
-//         {/* Explainer Column Right */}
-//         <MDBCol md='4' className='mx-auto'>
-//           {/* <TopicExplainer topic={article.topic} /> */}
-//         </MDBCol>
-//       </MDBRow>
-//     </MDBContainer>
-//   );
-// };
 
 export default SingleArticlePage;
