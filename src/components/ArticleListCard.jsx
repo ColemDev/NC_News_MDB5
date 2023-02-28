@@ -2,9 +2,13 @@ import React from 'react';
 import { MDBCard, MDBRow, MDBCol, MDBCardHeader, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage, MDBCardFooter, MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
 import ArticleVotingButton from './ArticleVotingButton';
 import { Link } from 'react-router-dom';
+import { dateFormatter } from '../utils/DateFormatter';
+
+
+
 
 const ArticleListCard = ({ article }) => {
-
+ 
     return (      
         <MDBCard shadow='0' border='primary' background='white' className='mb-3'>
         <MDBRow className='row-cols-2 row-cols-md-2 justify-content-center'>
@@ -23,12 +27,13 @@ const ArticleListCard = ({ article }) => {
                     <p className='text-muted'>Posted by: u/{article.author}</p>
                 </MDBCol>
                 <MDBCol className='col-md-4'>
-                    <p className='text-muted'>Posted on: nc/{article.date}</p>
+                    <p className='text-muted'>Posted: {dateFormatter(article.created_at)}
+                    </p>
                 </MDBCol>
                 </MDBRow>
                 </MDBCardHeader>
                 <MDBCardBody>
-                    <MDBCardTitle>`${article.title}`</MDBCardTitle>
+                    <MDBCardTitle>{article.title}</MDBCardTitle>
                         </MDBCardBody>
                         <MDBCardImage
                         src={article.article_img_url}
@@ -51,8 +56,7 @@ const ArticleListCard = ({ article }) => {
                                 </MDBCol>
                                 </MDBRow> 
                                 </MDBCard>
-
-    )
-}
+    );
+};
 
 export default ArticleListCard;

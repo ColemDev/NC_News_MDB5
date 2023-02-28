@@ -9,6 +9,7 @@ const App = () => {
             <Navbar />
             <Routes>
                 <Route path="/" element={<ArticleListPage />} />
+                <Route path="/topics/:topic_slug" element={<ArticleListPage />} />
             </Routes>
         </Router>
     );
