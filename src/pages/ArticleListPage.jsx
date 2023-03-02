@@ -1,8 +1,7 @@
 import React, { useState} from 'react';
-import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardFooter, MDBBtn } from 'mdb-react-ui-kit';
 import ArticleList from '../components/ArticleList';
 import { useParams } from 'react-router-dom';
-// import ExplainerCard from '../components/ExplainerCard';
 
 const ArticlesListPage = () => {
  
@@ -12,17 +11,32 @@ const [topic, setTopic] = useState(topic_slug);
 
             return (
                 <MDBContainer>
-                    <MDBRow className='row-cols-2 row-cols-md-2 justify-content-center'>
+                    <MDBRow className='justify-content-center'>
                         <MDBCol className='col-md-8 mb-3'>
-                                {typeOfParam}
                                 <ArticleList topic={topic} />
                         </MDBCol>
                         <MDBCol className='col-md-4 mb-3'>
-                            {/* <ExplainerCard topic={topic} /> */}
+                        <MDBCard className='h-auto'>
+    <MDBCardImage
+      src='https://mdbootstrap.com/img/new/standard/city/043.webp'
+      alt='...'
+      position='top'
+    />
+    <MDBCardBody>
+      <MDBCardTitle>nc/AllArticles
+      </MDBCardTitle>
+      <MDBCardText>
+        The most active posts from all of Northcoders News.
+      </MDBCardText>
+    </MDBCardBody>
+    <MDBCardFooter>
+      <MDBBtn color='primary'>Create Post</MDBBtn>
+    </MDBCardFooter>
+  </MDBCard>
                         </MDBCol>
                     </MDBRow>
                 </MDBContainer>
             );
-        };
+};
 
 export default ArticlesListPage;

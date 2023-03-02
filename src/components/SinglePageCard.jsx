@@ -9,7 +9,7 @@ const SinglePageCard = ({ article }) => {
       <MDBCard shadow='0' border='primary' background='white' className='mb-3'>
       <MDBRow>
           <MDBCol className='col-md-1'>
-             <ArticleVotingButton votes={article.votes}/>
+             <ArticleVotingButton article_id = {article.article_id} vote = {article.votes}/>
           </MDBCol>
           <MDBCol className='col-md-11'>
             <MDBCardHeader>

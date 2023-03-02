@@ -1,27 +1,41 @@
 import React, { useState } from 'react';
 import { MDBContainer, MDBBtn, MDBIcon
  } from 'mdb-react-ui-kit';
-//article.votes is passed in as a prop from ArticleList.jsx via <ArticleVotingButton votes={article.votes}/>
-const ArticleVotingButton = ({ votes }) => {
-    //takes in votes as a prop and sets it as the initial state then increments it by 1 or -1 depending on which button is clicked.
-    const [voteCount, setVoteCount] = useState(votes);
-    const incrementVoteCount = (increment) => {
-        setVoteCount(voteCount + increment);
-    };
+ import { updateArticleVotes } from '../utils/Api';
 
+const ArticleVotingButton = ({  article_id, vote }) => {
+const [currentVote, setCurrentVote] = useState(vote);
+const [count, setCount] = useState(currentVote);
+const [error, setError] = useState('');
 
-    return (
+const incrementCount = (increment) => {
+    if (increment === 1) {
+        setCount(count + 1);
+    } else if (increment === -1) {
+        setCount(count - 1);
+    }
+    updateArticleVotes(article_id, increment)
+    .catch((err) => {
+        setError(err.response.data.msg);
+        setCount(currentVote);
+    });
+};
+
+return (
+        
         <MDBContainer className='d-flex flex-column justify-content-center align-items-center'>
             {/* upvote arrow button  */}
-            <MDBBtn color='primary' onClick={() => incrementVoteCount(1)}>
+            <MDBBtn color='primary' onClick={() => incrementCount(1)}>
                 <MDBIcon icon='arrow-up' fas />
                 </MDBBtn>
                 {/* vote counter here */}
-                <h6 className='text-center'>{voteCount}</h6>
+                <p>{count}</p>
                 {/* downvote arrow button */}
-                <MDBBtn color='primary' onClick={() => incrementVoteCount(-1)}>
+                <MDBBtn color='primary' onClick={() => incrementCount(-1)}>
                     <MDBIcon icon='arrow-down' fas />
                     </MDBBtn>
+                  {/* blank space unless error message is displayed */}
+                    <p>{error}</p>
                     </MDBContainer>
     );
 }

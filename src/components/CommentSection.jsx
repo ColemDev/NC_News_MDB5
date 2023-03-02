@@ -5,9 +5,9 @@ import CommentMenu from './CommentMenu';
 import CommentList from './CommentList';
 import CommentForm from './CommentForm';
 
-const CommentSection = () => {
+const CommentSection = ({ article_id }) => {
   return ( 
-    <MDBContainer>
+    <MDBContainer className='mb-3'>
     <MDBContainer className='border border-primary rounded-3 p-3'>
     {/* Comment Form */}
           <CommentForm />
@@ -18,7 +18,7 @@ const CommentSection = () => {
     </MDBContainer>
     <MDBContainer className='border border-primary rounded-3 p-3'>
       {/* Comment List */}
-          <CommentList />
+          <CommentList article_id={article_id} />
     </MDBContainer>
     </MDBContainer>
   );
