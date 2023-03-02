@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MDBContainer, MDBBtn, MDBIcon
+import { MDBContainer, MDBBtn, MDBIcon, MDBRow, MDBCol, MDBCardText
  } from 'mdb-react-ui-kit';
  import { updateArticleVotes } from '../utils/Api';
 
@@ -25,17 +25,27 @@ return (
         
         <MDBContainer className='d-flex flex-column justify-content-center align-items-center'>
             {/* upvote arrow button  */}
+               
             <MDBBtn color='primary' onClick={() => incrementCount(1)}>
                 <MDBIcon icon='arrow-up' fas />
                 </MDBBtn>
+               
+                
+                
                 {/* vote counter here */}
-                <p>{count}</p>
+                <p>{currentVote}</p>
+                
+                
                 {/* downvote arrow button */}
+
                 <MDBBtn color='primary' onClick={() => incrementCount(-1)}>
                     <MDBIcon icon='arrow-down' fas />
                     </MDBBtn>
                   {/* blank space unless error message is displayed */}
+                    
+                    
                     <p>{error}</p>
+                    
                     </MDBContainer>
     );
 }
