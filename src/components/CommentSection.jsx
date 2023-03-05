@@ -6,11 +6,12 @@ import CommentList from './CommentList';
 import CommentForm from './CommentForm';
 
 const CommentSection = ({ article_id }) => {
+  const loggedInUser = 'jessjelly';
   return ( 
     <MDBContainer className='mb-3'>
     <MDBContainer className='border border-primary rounded-3 p-3'>
     {/* Comment Form */}
-          <CommentForm />
+          <CommentForm username={loggedInUser} article_id={article_id} />
     </MDBContainer>
     <MDBContainer className='border border-primary rounded-3 p-3'>
       {/* Comment Sort Menu */} 

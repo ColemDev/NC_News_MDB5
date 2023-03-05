@@ -15,7 +15,7 @@ const SinglePageCard = ({ article }) => {
             <MDBCardHeader>
              <MDBRow className='row-cols-3 row-cols-md-3'>
                   <MDBCol className='col-md-4'>
-                    <MDBCardLink href={`/topics/${article.topic}`}>
+                    <MDBCardLink href={`/articles?topic=${article.topic}`}>
                 <p className='text-muted'>
                   nc/{article.topic}
                 </p> 

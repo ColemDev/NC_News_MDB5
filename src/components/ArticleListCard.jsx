@@ -22,7 +22,7 @@ const ArticleListCard = ({ article }) => {
             <MDBRow className='row-cols-3 row-cols-md-3'>
                 <MDBCol className='col-md-4'>
                     {/* link to list of topics  */}
-                   <MDBCardLink href={`/topics/${article.topic}`}>
+                   <MDBCardLink href={`/articles/${article.topic}`}>
                         <p className='text-muted'>nc/{article.topic}
                         </p>
                     </MDBCardLink>

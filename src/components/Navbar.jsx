@@ -20,6 +20,7 @@ import { fetchTopics, } from '../utils/Api';
 const Navbar = () => {
   const [showBasic, setShowBasic] = useState(false);
   const [topics, setTopics] = useState([]);
+  const loggedInUser = 'jessjelly';
 
   fetchTopics().then((topics) => {
     setTopics(topics);
@@ -55,14 +56,15 @@ return (
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
                <MDBDropdownItem>
-                <MDBNavbarLink href='/'>
+                <MDBNavbarLink href='/' className='text-dark'>
                   All Topics
                 </MDBNavbarLink>
                </MDBDropdownItem>
                 {topics.map((topic) => {
                   return (
                     <MDBDropdownItem key={topic.slug}>
-                      <MDBNavbarLink href={`/topics/${topic.slug}`}>
+                     {/* link query string */}
+                      <MDBNavbarLink href={`/articles/${topic.slug}`}>
                         {topic.slug}
                       </MDBNavbarLink>
                     </MDBDropdownItem>
@@ -77,7 +79,7 @@ return (
           <MDBNavbarItem>
           <MDBDropdown>
             <MDBDropdownToggle tag='a' className='nav-link' role='button'>
-              <MDBIcon icon='user' fas />Hardcore-Muppetry2023
+              <MDBIcon icon='user' fas />{loggedInUser}
             </MDBDropdownToggle>
             <MDBDropdownMenu>
               <MDBDropdownItem link>Profile</MDBDropdownItem>

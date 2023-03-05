@@ -4,13 +4,22 @@ const baseURL = "http://localhost:9090/api";
 
 
 
-//backend endpoint with queries is GET /api/articles?sort_by=created_at&order=desc&topic=coding
+//example of backend endpoint with queries is GET /api/articles?sort_by=created_at&order=desc&topic=coding
 //backend endpoint without queries is GET /api/articles
-//fetchArticles will be used to get all articles. You can pass in a sort_by, order and topic to filter the articles. If you don't pass in any of these, it will return all articles in the default order. And example of fetching all articles for the coding topic would be fetchArticles('created_at', 'desc', 'coding'). It will return an array of articles.
+
+//fetchArticles will be used to get all articles. You can pass in a sort_by, order and topic to filter the articles. If you don't pass in any of these, it will return all articles in the default order. And example of fetching all articles for the coding topic would be fetchArticles('created_at', 'desc', 'coding'). It will return an array of articles in the order of most recent to least recent.
 export const fetchArticles = async (sort_by, order, topic) => {
-  const { data } = await axios.get(`${baseURL}/articles`);
+  const { data } = await axios.get(`${baseURL}/articles`, {
+    params: {
+      sort_by: sort_by,
+      order: order,
+      topic: topic,
+    },
+  });
   return data.articles;
 };
+
+
 //backend endpoint is GET /api/topics
 //fetchTopics will be used to get all topics. It will return an array of topics.
 export const fetchTopics = async () => {
@@ -20,11 +29,11 @@ export const fetchTopics = async () => {
 
 //backend endpoint is GET /api/articles?topic=:topic
 //fetchArticlesByTopic will be used to get all articles for a specific topic. An example of fetching all articles for the coding topic would be fetchArticlesByTopic('coding'). It will return an array of articles.
-export const fetchArticlesByTopic = async (topic) => {
-  console.log(topic, "param result from the api");
-  const { data } = await axios.get(`${baseURL}/articles?topic=${topic}`);
-  return data.articles;
-};
+// export const fetchArticlesByTopic = async (topic) => {
+//   console.log(topic, "param result from the api");
+//   const { data } = await axios.get(`${baseURL}/articles?topic=${topic}`);
+//   return data.articles;
+// };
 
 //backend endpoint is GET /api/articles/:article_id
 // params accepted are (selectedArticle_id)
