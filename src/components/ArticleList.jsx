@@ -1,21 +1,19 @@
-import React, {useState} from 'react';
-import { fetchArticles, fetchArticlesByTopic } from '../utils/Api';
+import React, {useState, useEffect} from 'react';
+import { fetchArticles} from '../utils/Api';
 import { MDBRow, MDBCol, MDBContainer } from 'mdb-react-ui-kit';
 
 import ArticleListCard from './ArticleListCard';
 
-const ArticleList = ({ topic }) => {
+const ArticleList = ({ sort_by, order, topic }) => {
     const [articles, setArticles] = useState([]);
-    if (topic) {
-        fetchArticlesByTopic(topic).then((articlesFromApi) => {
+
+    useEffect(() => {
+        fetchArticles(sort_by, order, topic)
+        .then((articlesFromApi) => {
             setArticles(articlesFromApi);
         });
-    } else {
-        fetchArticles().then((articlesFromApi) => {
-            setArticles(articlesFromApi);
-        });
-    }
-    
+    }, [sort_by, order, topic]);
+
     return (
         <MDBContainer>
         <MDBRow className='row-cols-2 row-cols-md-3 justify-content-center'>
@@ -31,4 +29,4 @@ const ArticleList = ({ topic }) => {
 )
 }
 
-export default ArticleList;
+// export default ArticleList;
