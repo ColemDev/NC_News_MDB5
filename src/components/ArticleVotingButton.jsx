@@ -1,25 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MDBContainer, MDBBtn, MDBIcon, MDBRow, MDBCol, MDBCardText
  } from 'mdb-react-ui-kit';
  import { updateArticleVotes } from '../utils/Api';
 
 const ArticleVotingButton = ({  article_id, vote }) => {
+ 
+    
 const [currentVote, setCurrentVote] = useState(vote);
 const [count, setCount] = useState(currentVote);
 const [error, setError] = useState('');
 
-const incrementCount = (increment) => {
-    if (increment === 1) {
-        setCount(count + 1);
-    } else if (increment === -1) {
-        setCount(count - 1);
+useEffect(() => {
+    setCurrentVote(count);
+}, [count]);
+
+const incrementCount = (num) => {
+    if (count + num < 0) {
+        setError('You cannot vote lower than 0');
+    } else {
+        setCount(count + num);
+        updateArticleVotes(article_id, num);
     }
-    updateArticleVotes(article_id, increment)
-    .catch((err) => {
-        setError(err.response.data.msg);
-        setCount(currentVote);
-    });
 };
+
+
 
 return (
         

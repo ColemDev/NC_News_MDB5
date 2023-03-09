@@ -14,7 +14,7 @@ const ArticleListCard = ({ article }) => {
         <MDBRow className='row-cols-2 row-cols-md-2 justify-content-center'>
     {/* left column of card is voting button component  */}
     <MDBCol className='col-md-1'>
-    <ArticleVotingButton  article_id={article.article_id} vote={article.votes}/>
+     <ArticleVotingButton  article_id={article.article_id} vote={article.votes}/>
     </MDBCol> 
     {/* right column of card is article component*/}
     <MDBCol className='col-md-11'>
@@ -22,7 +22,7 @@ const ArticleListCard = ({ article }) => {
             <MDBRow className='row-cols-3 row-cols-md-3'>
                 <MDBCol className='col-md-4'>
                     {/* link to list of topics  */}
-                   <MDBCardLink href={`/articles/${article.topic}`}>
+                   <MDBCardLink href={`/topics/${article.topic}`}>
                         <p className='text-muted'>nc/{article.topic}
                         </p>
                     </MDBCardLink>

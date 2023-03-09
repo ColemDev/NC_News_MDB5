@@ -1,56 +1,68 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { MDBContainer, MDBRow, MDBCol, MDBTabs, MDBTabsItem, MDBTabsLink, MDBTabsContent, MDBTabsPane } from 'mdb-react-ui-kit';
+import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import ArticleListCard from '../components/ArticleListCard';
 import { fetchArticles } from '../utils/Api';
 
 const ArticlesListPage = () => {
+  const [sort_by, setSort_by] = useState('created_at');
+  const [order, setOrder] = useState('desc');
   const { topic } = useParams();
-  // const urlParams = new URLSearchParams(location.search);
 
-  // const [sort_by, setSortBy] = useState(urlParams.get('sort_by') || 'created_at');
-  // const [order, setOrder] = useState(urlParams.get('order') || 'desc');
-  // const [articles, setArticles] = useState([]);
-
-  // const handleBasicClick = (sortBy) => {
-  //   setSortBy(sortBy);
-  // };
+ 
+  
+  const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    fetchArticles(sort_by, order, topic).then((data) => {
-      setArticles(data);
+    fetchArticles(sort_by, order, topic).then((articlesFromApi) => {
+      setArticles(articlesFromApi);
     });
   }, [sort_by, order, topic]);
+
+  const articleList = () => {
+    setArticles([]);
+    fetchArticles(sort_by, order, topic).then((articlesFromApi) => {
+      setArticles(articlesFromApi);
+    });
+  };
+
+
 
   return (
     <MDBContainer>
       <MDBRow className='row-cols-2 row-cols-md-3 justify-content-center'>
         <MDBCol className='col-md-auto'>
-          <MDBTabs className='mb-3'>
-            <MDBTabsItem>
-              <MDBTabsLink onClick={() => handleBasicClick('created_at')} active={sort_by === 'created_at'}>
-                Newest
-              </MDBTabsLink>
-            </MDBTabsItem>
-            <MDBTabsItem>
-              <MDBTabsLink onClick={() => handleBasicClick('comment_count')} active={sort_by === 'comment_count'}>
-                Most Popular
-              </MDBTabsLink>
-            </MDBTabsItem>
-            <MDBTabsItem>
-              <MDBTabsLink onClick={() => handleBasicClick('votes')} active={sort_by === 'votes'}>
-                Most Controversial
-              </MDBTabsLink>
-            </MDBTabsItem>
-          </MDBTabs>
-
-          <MDBTabsContent>
-            <MDBTabsPane show={true}>
-              {articles.map((article) => (
-                <ArticleListCard key={article.article_id} article={article} />
+            <MDBContainer className='d-flex flex-column justify-content-center align-items-start'>
+              {/* sort_by and order select toggle */}
+              <MDBRow className='row-cols-2 row-cols-md-2 justify-content-center'>
+                <MDBCol className='col-md-auto'>
+          <select onChange={(event) => {
+            setSort_by(event.target.value);
+            articleList();
+          }
+          }>
+            <option value='created_at'>Date</option>
+            <option value='votes'>Votes</option>
+            </select>
+            </MDBCol>
+            <MDBCol className='col-md-auto'>
+            <select onChange={(event) => {
+            setOrder(event.target.value);
+            articleList();
+          }
+          }>
+            <option value='desc'>Descending</option>
+            <option value='asc'>Ascending</option>
+            </select>
+            </MDBCol>
+            </MDBRow>
+            </MDBContainer>
+            <MDBContainer>
+            {/* article list */}
+        {articles.map((article) => (
+          <ArticleListCard article={article} />
               ))}
-            </MDBTabsPane>
-          </MDBTabsContent>
+              </MDBContainer>
         </MDBCol>
       </MDBRow>
     </MDBContainer>
