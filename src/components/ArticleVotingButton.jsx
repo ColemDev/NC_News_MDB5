@@ -27,30 +27,33 @@ const incrementCount = (num) => {
 
 return (
         
-        <MDBContainer className='d-flex flex-column justify-content-center align-items-center'>
+    //  vertically stacked buttons
+    <MDBContainer className='d-flex flex-column'>
+        <MDBRow className='row-cols-1 row-cols-md-1'>
+            <MDBCol className='col-md-1'>
+                <MDBContainer>
             {/* upvote arrow button  */}
-               
             <MDBBtn color='primary' onClick={() => incrementCount(1)}>
                 <MDBIcon icon='arrow-up' fas />
                 </MDBBtn>
-               
-                
-                
+                </MDBContainer>
+                <MDBContainer>
                 {/* vote counter here */}
                 <p>{currentVote}</p>
-                
-                
+                </MDBContainer>
+                <MDBContainer>
                 {/* downvote arrow button */}
-
                 <MDBBtn color='primary' onClick={() => incrementCount(-1)}>
                     <MDBIcon icon='arrow-down' fas />
                     </MDBBtn>
-                  {/* blank space unless error message is displayed */}
-                    
-                    
-                    <p>{error}</p>
-                    
                     </MDBContainer>
+                    <MDBContainer>
+                  {/* blank space unless error message is displayed */}
+                    <MDBCardText>{error}</MDBCardText>
+                    </MDBContainer>
+            </MDBCol>
+        </MDBRow>
+    </MDBContainer>
     );
 }
 

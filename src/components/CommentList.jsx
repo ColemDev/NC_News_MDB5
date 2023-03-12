@@ -20,7 +20,8 @@ const CommentList = ({article_id}) => {
         <MDBCol>
           {comments.map((comment) => {
             return (
-                <CommentListCard comment={comment} />
+                <CommentListCard comment={comment} commentID={comment.comment_id} />
+
             );
             })}
         </MDBCol>

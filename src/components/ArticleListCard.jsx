@@ -22,7 +22,7 @@ const ArticleListCard = ({ article }) => {
             <MDBRow className='row-cols-3 row-cols-md-3'>
                 <MDBCol className='col-md-4'>
                     {/* link to list of topics  */}
-                   <MDBCardLink href={`/topics/${article.topic}`}>
+                   <MDBCardLink href={`/articles/topics/${article.topic}`}>
                         <p className='text-muted'>nc/{article.topic}
                         </p>
                     </MDBCardLink>
@@ -38,7 +38,7 @@ const ArticleListCard = ({ article }) => {
                 </MDBCardHeader>
                 <MDBCardBody>
                     <MDBCardTitle>
-                       <MDBCardLink href={`/article/${article.article_id}`} className='text-dark'>
+                       <MDBCardLink href={`/articles/id/${article.article_id}`} className='text-dark'>
                         {article.title}
                         </MDBCardLink>
                     </MDBCardTitle>
@@ -51,7 +51,7 @@ const ArticleListCard = ({ article }) => {
                           </MDBCardBody>
                         <MDBCardFooter>
                             <MDBBtn color='white' className='px-3'>
-                                    <Link to={`/article/${article.article_id}`}>
+                                    <Link to={`/articles/id/${article.article_id}`}>
                                      <MDBIcon far icon="comment-alt" /> {article.comment_count} Comments
                             
                             </Link>

@@ -64,7 +64,7 @@ return (
                   return (
                     <MDBDropdownItem key={topic.slug}>
                      {/* link query string */}
-                      <MDBNavbarLink href={`/articles/${topic.slug}`}>
+                      <MDBNavbarLink href={`/articles/topics/${topic.slug}`}>
                         {topic.slug}
                       </MDBNavbarLink>
                     </MDBDropdownItem>

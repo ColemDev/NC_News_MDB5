@@ -4,14 +4,16 @@ import ArticleVotingButton from  './ArticleVotingButton';
 import { dateFormatter } from '../utils/DateFormatter';
 
 const SinglePageCard = ({ article }) => {
+  //The card should have two columns, the first column should contain the voting buttons and the second column should contain the rest of the card content.
  
     return (
       <MDBCard shadow='0' border='primary' background='white' className='mb-3'>
-      <MDBRow>
-          <MDBCol className='col-md-1'>
-             <ArticleVotingButton article_id = {article.article_id} vote = {article.votes}/>
+      <MDBRow className='row-cols-2 row-cols-md-2'>
+          <MDBCol className='col-md-1 d-flex flex-column'>
+
+             <ArticleVotingButton  article_id={article.article_id} vote={article.votes}/>
           </MDBCol>
-          <MDBCol className='col-md-11'>
+          <MDBCol className='col-md-11 d-flex flex-column'>
             <MDBCardHeader>
              <MDBRow className='row-cols-3 row-cols-md-3'>
                   <MDBCol className='col-md-4'>

@@ -1,5 +1,5 @@
 
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchArticleById} from '../utils/Api';
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardFooter, MDBBtn } from 'mdb-react-ui-kit';
@@ -12,13 +12,18 @@ const SingleArticlePage = () => {
 
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
-  fetchArticleById(article_id)
-    .then((article) => {
-      setArticle(article);
+
+  useEffect(() => {
+    fetchArticleById(article_id)
+    .then((articleFromApi) => {
+      setArticle(articleFromApi);
     })
     .catch((err) => {
       console.log(err);
     });
+  }, [article_id]);
+
+
    const description = (article) => {
     return (article.topic === 'coding') ? 'Code is love, code is life' :
     (article.topic === 'football') ? 'FOOTIE!' :
