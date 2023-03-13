@@ -1,56 +1,76 @@
 import React, { useState, useEffect } from 'react';
 import { MDBContainer, MDBBtn, MDBIcon, MDBRow, MDBCol, MDBCardText
  } from 'mdb-react-ui-kit';
- import { updateArticleVotes } from '../utils/Api';
+ import { updateArticleVotes, fetchArticleById } from '../utils/Api';
 
-const ArticleVotingButton = ({  article_id, vote }) => {
- 
-    
-const [currentVote, setCurrentVote] = useState(vote);
-const [count, setCount] = useState(currentVote);
+const ArticleVotingButton = ({ article_id}) => {
+const [voteCount, setVoteCount] = useState(0);
 const [error, setError] = useState('');
 
 useEffect(() => {
-    setCurrentVote(count);
-}, [count]);
+    fetchArticleById(article_id)
+    .then((article) => {
+        setVoteCount(article.votes);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+}, [article_id]);
 
-const incrementCount = (num) => {
-    if (count + num < 0) {
-        setError('You cannot vote lower than 0');
+const handleIncrement = (increment) => {
+    //can't vote below 0
+    if (voteCount + increment < 0) {
+        setError('You cannot vote below 0');
     } else {
-        setCount(count + num);
-        updateArticleVotes(article_id, num);
+        if (increment === 1) {
+            setVoteCount(voteCount + 1);
+        }
+        if (increment === -1) {
+            setVoteCount(voteCount - 1);
+        }
+        updateArticleVotes(article_id, increment)
+        .catch((err) => {
+            setError(err.response.data.msg);
+            setVoteCount(voteCount);
+        });
     }
-};
-
+}
 
 
 return (
-        
-    //  vertically stacked buttons
-    <MDBContainer className='d-flex flex-column'>
-        <MDBRow className='row-cols-1 row-cols-md-1'>
-            <MDBCol className='col-md-1'>
-                <MDBContainer>
-            {/* upvote arrow button  */}
-            <MDBBtn color='primary' onClick={() => incrementCount(1)}>
-                <MDBIcon icon='arrow-up' fas />
-                </MDBBtn>
-                </MDBContainer>
-                <MDBContainer>
-                {/* vote counter here */}
-                <p>{currentVote}</p>
-                </MDBContainer>
-                <MDBContainer>
-                {/* downvote arrow button */}
-                <MDBBtn color='primary' onClick={() => incrementCount(-1)}>
-                    <MDBIcon icon='arrow-down' fas />
+    <MDBContainer>
+ 
+        <MDBRow>
+            <MDBCol>
+                <div className='d-flex justify-content-center'>
+                    {/* upvote arrow button */}
+                    <MDBBtn color='primary' onClick={() => handleIncrement(1)} >
+                        <MDBIcon icon='arrow-up' fas />
                     </MDBBtn>
-                    </MDBContainer>
-                    <MDBContainer>
-                  {/* blank space unless error message is displayed */}
-                    <MDBCardText>{error}</MDBCardText>
-                    </MDBContainer>
+                </div>
+            </MDBCol>
+        </MDBRow>
+    
+        <MDBRow>
+            <MDBCol>
+                <div className='d-flex justify-content-center'>
+                    {/* vote counter must always have a correct number , when first rendered and after voting buttons are clicked */}
+                    <MDBCardText>{voteCount}</MDBCardText>
+                </div>
+            </MDBCol>
+        </MDBRow>
+      
+        <MDBRow>
+            <MDBCol>
+                <div className='d-flex justify-content-center'>
+                    {/* downvote arrow button */}
+                    <MDBBtn color='primary' onClick={() => handleIncrement(-1)}>
+                        <MDBIcon icon='arrow-down' fas />
+                    </MDBBtn>
+                </div>
+                <div> {error} </div>
+
+     
             </MDBCol>
         </MDBRow>
     </MDBContainer>

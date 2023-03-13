@@ -9,9 +9,11 @@ const SinglePageCard = ({ article }) => {
     return (
       <MDBCard shadow='0' border='primary' background='white' className='mb-3'>
       <MDBRow className='row-cols-2 row-cols-md-2'>
-          <MDBCol className='col-md-1 d-flex flex-column'>
+        {/* the voting button should not cross into the second column and should stay within the first column */}
 
-             <ArticleVotingButton  article_id={article.article_id} vote={article.votes}/>
+          <MDBCol className='col-md-1'>
+
+             <ArticleVotingButton article_id={article.article_id} />
           </MDBCol>
           <MDBCol className='col-md-11 d-flex flex-column'>
             <MDBCardHeader>
