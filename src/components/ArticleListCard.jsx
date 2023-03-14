@@ -12,16 +12,16 @@ const ArticleListCard = ({ article }) => {
     return (      
         <MDBCard shadow='0' border='primary' background='white' className='mb-3'>
         <MDBRow className='row-cols-2 row-cols-md-2 justify-content-center'>
-    {/* left column of card is voting button component  */}
+
     <MDBCol className='col-md-1'>
      <ArticleVotingButton  article_id={article.article_id} vote={article.votes}/>
     </MDBCol> 
-    {/* right column of card is article component*/}
+
     <MDBCol className='col-md-11'>
         <MDBCardHeader>
             <MDBRow className='row-cols-3 row-cols-md-3'>
                 <MDBCol className='col-md-4'>
-                    {/* link to list of topics  */}
+               
                    <MDBCardLink href={`/articles/topics/${article.topic}`}>
                         <p className='text-muted'>nc/{article.topic}
                         </p>
@@ -53,7 +53,6 @@ const ArticleListCard = ({ article }) => {
                             <MDBBtn color='white' className='px-3'>
                                     <Link to={`/articles/id/${article.article_id}`}>
                                      <MDBIcon far icon="comment-alt" /> {article.comment_count} Comments
-                            
                             </Link>
                             </MDBBtn>
                                 </MDBCardFooter>

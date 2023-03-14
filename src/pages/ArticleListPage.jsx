@@ -19,7 +19,7 @@ const ArticlesListPage = () => {
     });
   }, [sort_by, order, topic]);
 
-  const articleList = () => {
+  const articleListRefresh = () => {
     setArticles([]);
     fetchArticles(sort_by, order, topic).then((articlesFromApi) => {
       setArticles(articlesFromApi);
@@ -38,7 +38,7 @@ const ArticlesListPage = () => {
                 <MDBCol className='col-md-auto'>
           <select onChange={(event) => {
             setSort_by(event.target.value);
-            articleList();
+            articleListRefresh();
           }
           }>
             <option value='created_at'>Date</option>
@@ -48,7 +48,7 @@ const ArticlesListPage = () => {
             <MDBCol className='col-md-auto'>
             <select onChange={(event) => {
             setOrder(event.target.value);
-            articleList();
+            articleListRefresh();
           }
           }>
             <option value='desc'>Descending</option>
