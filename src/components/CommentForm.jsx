@@ -1,23 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { MDBInput, MDBBtn, MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
-import {postCommentToArticle_id } from '../utils/Api';
+import React, { useState, useEffect } from "react";
+import {
+  MDBInput,
+  MDBBtn,
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+} from "mdb-react-ui-kit";
+import { postCommentToArticle_id } from "../utils/Api";
 
-//    postCommentToArticle_id() uses article_id, username, body to post a comment to an article. 
-const CommentForm = ({username, article_id}) => {
-  const [comment, setComment] = useState('');
+const CommentForm = ({ username, article_id }) => {
+  const [comment, setComment] = useState("");
   const [commentSubmitted, setCommentSubmitted] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    postCommentToArticle_id(article_id, username, comment)
-    .then((comment) => {
+    postCommentToArticle_id(article_id, username, comment).then((comment) => {
       setCommentSubmitted(true);
     });
   };
 
   useEffect(() => {
     if (commentSubmitted) {
-      setComment('');
+      setComment("");
       setCommentSubmitted(false);
     }
   }, [commentSubmitted]);
@@ -29,12 +33,12 @@ const CommentForm = ({username, article_id}) => {
           <form onSubmit={handleSubmit}>
             <MDBInput
               label={`Comment as ${username}`}
-              type='textarea'
-              rows='3'
+              type="textarea"
+              rows="3"
               value={comment}
               onChange={(event) => setComment(event.target.value)}
             />
-            <MDBBtn type='submit' color='primary'>
+            <MDBBtn type="submit" color="primary">
               Submit
             </MDBBtn>
           </form>
@@ -42,6 +46,6 @@ const CommentForm = ({username, article_id}) => {
       </MDBRow>
     </MDBContainer>
   );
-}
+};
 
 export default CommentForm;

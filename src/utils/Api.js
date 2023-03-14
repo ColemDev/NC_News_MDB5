@@ -2,8 +2,6 @@ import axios from "axios";
 
 const baseURL = "http://localhost:9090/api";
 
-
-
 //example of backend endpoint with queries is GET /api/articles?sort_by=created_at&order=desc&topic=coding
 //backend endpoint without queries is GET /api/articles
 
@@ -18,7 +16,6 @@ export const fetchArticles = async (sort_by, order, topic) => {
   });
   return data.articles;
 };
-
 
 //backend endpoint is GET /api/topics
 //fetchTopics will be used to get all topics. It will return an array of topics.
@@ -91,8 +88,4 @@ export const deleteCommentById = async (comment_id) => {
 export const fetchUsers = async () => {
   const { data } = await axios.get(`${baseURL}/users`);
   return data.users;
-}
-
-
-
-
+};
